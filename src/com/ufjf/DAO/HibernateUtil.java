@@ -7,7 +7,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 /**
- * Classe com os metodos essenciais para utilizaÁ„o do Hibernate pelos DAOs
+ * Classe com os metodos essenciais para utiliza√ß√£o do Hibernate pelos DAOs
  *
  */
 public class HibernateUtil {
@@ -15,7 +15,7 @@ public class HibernateUtil {
 	private static ServiceRegistry serviceRegistry;
 
 	/**
-	 * FunÁ„o para iniciar as configuraÁıes do Hibernate
+	 * Fun√ß√£o para iniciar as configura√ß√µes do Hibernate
 	 * @exception ExceptionInInitializerError;
 	 * @return void
 	 */
@@ -32,7 +32,7 @@ public class HibernateUtil {
 	}
 	
 	/**
-	 * FunÁ„o que inicia uma sess„o do Hibernate para conex„o com o banco
+	 * Fun√ß√£oo que inicia uma sess√£o do Hibernate para conex√£o com o banco
 	 * @return Session
 	 * @throws Exception
 	 */
