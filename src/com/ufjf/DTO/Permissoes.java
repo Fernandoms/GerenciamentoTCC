@@ -1,5 +1,6 @@
 package com.ufjf.DTO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Permissoes")
-public class Permissoes {
+public class Permissoes implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "idPermissao", unique = true, nullable = false)

@@ -1,5 +1,6 @@
 package com.ufjf.DTO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -15,7 +16,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "TCC")
-public class TCC {
+public class TCC implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "idTCC", unique = true, nullable = false)

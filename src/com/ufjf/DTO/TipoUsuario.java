@@ -1,5 +1,6 @@
 package com.ufjf.DTO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "TipoUsuario")
-public class TipoUsuario {
+public class TipoUsuario implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "idTipoUsuario", unique = true, nullable = false)
@@ -29,15 +35,12 @@ public class TipoUsuario {
 
 	@Column(name = "nomeTipoUsuario", length = 45, nullable = false)
 	private String nomeTipoUsuario;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "TipoUsuario_Permissoes", joinColumns = { 
-			@JoinColumn(name = "idTipoUsuario", nullable = false, updatable = false) }, 
-			inverseJoinColumns = { @JoinColumn(name = "idPermissao", 
-					nullable = false, updatable = false) })
+	@JoinTable(name = "TipoUsuario_Permissoes", joinColumns = { @JoinColumn(name = "idTipoUsuario", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "idPermissao", nullable = false, updatable = false) })
 	private List<Permissoes> permissoes = new ArrayList<Permissoes>();
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="tipoUsuario")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoUsuario")
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 
 	public int getIdTipoUsuario() {

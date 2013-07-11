@@ -1,5 +1,7 @@
 package com.ufjf.DTO;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,7 +15,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Perguntas")
-public class Perguntas {
+public class Perguntas implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "idPergunta", unique = true, nullable = false)
@@ -26,6 +33,6 @@ public class Perguntas {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idCurso", nullable = true)
-	private Curso cursoPergunta;
+	private Curso curso;
 
 }

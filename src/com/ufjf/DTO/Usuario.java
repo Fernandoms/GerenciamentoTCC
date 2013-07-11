@@ -1,5 +1,6 @@
 package com.ufjf.DTO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Usuario")
-public class Usuario {
+public class Usuario implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "idUsuario", unique = true, nullable = false)
@@ -49,7 +55,7 @@ public class Usuario {
 	private Curso curso;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "aluno")
-	private List<TCC> TCC = new ArrayList<TCC>();
+	private List<TCC> tcc = new ArrayList<TCC>();
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orientador")
 	private List<TCC> orienta = new ArrayList<TCC>();
@@ -119,11 +125,11 @@ public class Usuario {
 	}
 
 	public List<TCC> getTCC() {
-		return TCC;
+		return tcc;
 	}
 
-	public void setTCC(List<TCC> tCC) {
-		TCC = tCC;
+	public void setTCC(List<TCC> tcc) {
+		this.tcc = tcc;
 	}
 
 	public List<TCC> getOrienta() {
