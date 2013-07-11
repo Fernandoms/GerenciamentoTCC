@@ -1,11 +1,16 @@
 package com.ufjf.DTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -35,13 +40,19 @@ public class Usuario {
 	@Column(name = "titulacao", length = 45, nullable = true)
 	private String titulacao;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipoUsuario", nullable = true)
 	private TipoUsuario tipoUsuario;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idCurso", nullable = true)
-	private Curso idCurso;
+	private Curso curso;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "aluno")
+	private List<TCC> TCC = new ArrayList<TCC>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orientador")
+	private List<TCC> orienta = new ArrayList<TCC>();
 
 	public int getIdUsuario() {
 		return idUsuario;
@@ -99,12 +110,28 @@ public class Usuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	public Curso getIdCurso() {
-		return idCurso;
+	public Curso getCurso() {
+		return curso;
 	}
 
-	public void setIdCurso(Curso idCurso) {
-		this.idCurso = idCurso;
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
+	public List<TCC> getTCC() {
+		return TCC;
+	}
+
+	public void setTCC(List<TCC> tCC) {
+		TCC = tCC;
+	}
+
+	public List<TCC> getOrienta() {
+		return orienta;
+	}
+
+	public void setOrienta(List<TCC> orienta) {
+		this.orienta = orienta;
 	}
 
 }

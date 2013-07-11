@@ -37,7 +37,7 @@ public class TipoUsuario {
 					nullable = false, updatable = false) })
 	private List<Permissoes> permissoes = new ArrayList<Permissoes>();
 
-	@OneToMany(mappedBy="tipoUsuario")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="tipoUsuario")
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 
 	public int getIdTipoUsuario() {

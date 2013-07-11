@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -25,8 +26,11 @@ public class Curso {
 	@Column(name = "nomeCurso", length = 45, nullable = false)
 	private String nomeCurso;
 
-	@OneToMany(mappedBy = "idCurso")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curso")
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cursoPergunta")
+	private List<Perguntas> perguntas = new ArrayList<Perguntas>();
 
 	public int getIdCurso() {
 		return idCurso;
