@@ -4,14 +4,16 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost/bancodedados</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost/tcc</property>
   <property name="hibernate.connection.username">root</property>
   <property name="hibernate.connection.password">root</property>
   <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="show_sql">true</property>
   
   <mapping class="com.ufjf.DTO.Curso"/>
+  <mapping class="com.ufjf.DTO.Perguntas"/>
   <mapping class="com.ufjf.DTO.Permissoes"/>
+  <mapping class="com.ufjf.DTO.TCC"/>
   <mapping class="com.ufjf.DTO.TipoUsuario"/>
   <mapping class="com.ufjf.DTO.Usuario"/>
  </session-factory>

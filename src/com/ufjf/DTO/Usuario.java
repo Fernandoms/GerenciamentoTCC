@@ -46,11 +46,11 @@ public class Usuario implements Serializable {
 	@Column(name = "titulacao", length = 45, nullable = true)
 	private String titulacao;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tipoUsuario", nullable = true)
 	private TipoUsuario tipoUsuario;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idCurso", nullable = true)
 	private Curso curso;
 	

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,7 +35,7 @@ public class TipoUsuario implements Serializable {
 	@Column(name = "nomeTipoUsuario", length = 45, nullable = false)
 	private String nomeTipoUsuario;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "TipoUsuario_Permissoes", joinColumns = { @JoinColumn(name = "idTipoUsuario", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "idPermissao", nullable = false, updatable = false) })
 	private List<Permissoes> permissoes = new ArrayList<Permissoes>();
 

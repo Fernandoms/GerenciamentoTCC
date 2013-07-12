@@ -58,7 +58,7 @@ public class HibernateUtil {
      * @return List<Object>
      */
 	@SuppressWarnings({ "finally", "rawtypes", "unchecked"})
-    public static List<Object> selecionar(Class objClass){
+    public static List<Object> findAll(Class objClass){
         List<Object> lista = null;
         Query query = null;
         try {
@@ -82,7 +82,7 @@ public class HibernateUtil {
      * @return Object
      */
     @SuppressWarnings({ "finally", "rawtypes" })
-    public static Object selecionar(Class objClass, long id){
+    public static Object find(Class objClass, long id){
         Object objGet = null;
         try {
             session = getInstance();
@@ -104,7 +104,7 @@ public class HibernateUtil {
      * @exception HibernateException em caso de erro de transação, executando um {@code rollback} nas modificações.
      */
     @SuppressWarnings("finally")
-    public static Object saveOrUpdate(Object obj){
+    public static boolean saveOrUpdate(Object obj){
         try{
         	session = getInstance();
             transaction = session.beginTransaction();
@@ -116,7 +116,30 @@ public class HibernateUtil {
             return false;
         } finally {
         	session.close();
-            return obj;
+            return true;
+        }
+    }
+    
+    /**
+     * Salva um objeto passado por parâmetro retornando {@code true} caso tenha sucesso e {@code false} caso não atualize.
+     * @param obj 
+     * @return boolean
+     * @exception HibernateException em caso de erro de transação, executando um {@code rollback} nas modificações.
+     */
+    @SuppressWarnings("finally")
+    public static boolean save(Object obj){
+        try{
+        	session = getInstance();
+            transaction = session.beginTransaction();
+            session.save(obj);
+            transaction.commit();
+        } catch (HibernateException e) { 
+        	transaction.rollback();
+            System.err.println(e.fillInStackTrace());
+            return false;
+        } finally {
+        	session.close();
+            return true;
         }
     }
      
@@ -127,7 +150,7 @@ public class HibernateUtil {
      * @exception HibernateException em caso de erro de transação, executando um {@code rollback} nas modificações.
      */
     @SuppressWarnings("finally")
-    public static boolean atualizar(Object obj){
+    public static boolean update(Object obj){
         try{
         	session = getInstance();
         	transaction = session.beginTransaction();
@@ -150,7 +173,7 @@ public class HibernateUtil {
      * @exception HibernateException em caso de erro de transação, executando um {@code rollback} nas modificações.
      */
     @SuppressWarnings("finally")
-	public static boolean excluir(Object obj){
+	public static boolean delete(Object obj){
         try{
         	session = getInstance();
             transaction = session.beginTransaction();
