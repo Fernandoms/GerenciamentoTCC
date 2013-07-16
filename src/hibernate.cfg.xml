@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Link onde ficam os padrões de configurações do Hibernate para mapeamento. -->
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
  "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory>
-  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost/tcc</property>
-  <property name="hibernate.connection.username">root</property>
-  <property name="hibernate.connection.password">root</property>
-  <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-  <property name="show_sql">true</property>
-  
-  <mapping class="com.ufjf.DTO.Curso"/>
-  <mapping class="com.ufjf.DTO.Perguntas"/>
-  <mapping class="com.ufjf.DTO.Permissoes"/>
-  <mapping class="com.ufjf.DTO.TCC"/>
-  <mapping class="com.ufjf.DTO.TipoUsuario"/>
-  <mapping class="com.ufjf.DTO.Usuario"/>
- </session-factory>
+	<session-factory>
+		<!-- propriedade em que deve ser atribuído a classe de conexão com o MySQL. 
+			Deve-se adicionar a classe nas libs do projeto -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<!-- propriedade em que deve ser atribuído o endereço de conexão do banco -->
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/tcc</property>
+		<!-- propriedade em que deve ser atribuído a username do banco -->
+		<property name="hibernate.connection.username">root</property>
+		<!-- propriedade em que deve ser atribuído a senha do banco -->
+		<property name="hibernate.connection.password">root</property>
+		<!-- propriedade Escolhe o dialeto do Banco de Dados. Nesse caso MySQL -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- propriedade que mostra os comandos sql utilizados no Console da IDE -->
+		<property name="show_sql">true</property>
+
+		<!-- Classes que irão mapear as Entidades do Banco -->
+		<mapping class="com.ufjf.DTO.Curso" />
+		<mapping class="com.ufjf.DTO.Perguntas" />
+		<mapping class="com.ufjf.DTO.Permissoes" />
+		<mapping class="com.ufjf.DTO.TCC" />
+		<mapping class="com.ufjf.DTO.TipoUsuario" />
+		<mapping class="com.ufjf.DTO.Usuario" />
+	</session-factory>
 </hibernate-configuration>
