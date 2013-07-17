@@ -19,9 +19,13 @@
 		<property name="show_sql">true</property>
 
 		<!-- Classes que irão mapear as Entidades do Banco -->
+		<mapping class="com.ufjf.DTO.CalendarioSemestre" />
 		<mapping class="com.ufjf.DTO.Curso" />
+		<mapping class="com.ufjf.DTO.Participacao" />
 		<mapping class="com.ufjf.DTO.Perguntas" />
 		<mapping class="com.ufjf.DTO.Permissoes" />
+		<mapping class="com.ufjf.DTO.Questionario" />
+		<mapping class="com.ufjf.DTO.Resposta" />
 		<mapping class="com.ufjf.DTO.TCC" />
 		<mapping class="com.ufjf.DTO.TipoUsuario" />
 		<mapping class="com.ufjf.DTO.Usuario" />

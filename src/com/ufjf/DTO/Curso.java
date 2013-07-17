@@ -36,7 +36,10 @@ public class Curso implements Serializable {
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curso")
-	private List<Perguntas> perguntas = new ArrayList<Perguntas>();
+	private List<Questionario> questionarios = new ArrayList<Questionario>();
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "curso")
+	private List<CalendarioSemestre> calendarios = new ArrayList<CalendarioSemestre>();
 
 	public int getIdCurso() {
 		return idCurso;
@@ -60,6 +63,22 @@ public class Curso implements Serializable {
 
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
+	}
+
+	public List<Questionario> getQuestionarios() {
+		return questionarios;
+	}
+
+	public void setQuestionarios(List<Questionario> questionarios) {
+		this.questionarios = questionarios;
+	}
+
+	public List<CalendarioSemestre> getCalendarios() {
+		return calendarios;
+	}
+
+	public void setCalendarios(List<CalendarioSemestre> calendarios) {
+		this.calendarios = calendarios;
 	}
 
 }

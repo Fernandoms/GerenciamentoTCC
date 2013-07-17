@@ -2,6 +2,8 @@ package com.ufjf.DTO;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -60,12 +63,15 @@ public class TCC implements Serializable {
 	private Timestamp dataEnvioFinal;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idAluno", nullable = true)
+	@JoinColumn(name = "idAluno", nullable = false)
 	private Usuario aluno;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idOrientador", nullable = true)
+	@JoinColumn(name = "idOrientador", nullable = false)
 	private Usuario orientador;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tcc")
+	private List<Participacao> participacoes = new ArrayList<Participacao>();
 
 	public int getIdTCC() {
 		return idTCC;
@@ -169,6 +175,14 @@ public class TCC implements Serializable {
 
 	public void setOrientador(Usuario orientador) {
 		this.orientador = orientador;
+	}
+
+	public List<Participacao> getParticipacoes() {
+		return participacoes;
+	}
+
+	public void setParticipacoes(List<Participacao> participacoes) {
+		this.participacoes = participacoes;
 	}
 
 }

@@ -31,7 +31,7 @@ public class Permissoes implements Serializable {
 
 	@Column(name = "nomePermissao", length = 45, nullable = false)
 	private String nomePermissao;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "permissoes")
 	private List<TipoUsuario> tipousuario = new ArrayList<TipoUsuario>();
 

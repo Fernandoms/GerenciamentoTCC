@@ -45,20 +45,23 @@ public class Usuario implements Serializable {
 
 	@Column(name = "titulacao", length = 45, nullable = true)
 	private String titulacao;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "tipoUsuario", nullable = true)
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "tipoUsuario", nullable = false)
 	private TipoUsuario tipoUsuario;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idCurso", nullable = true)
+	@JoinColumn(name = "idCurso", nullable = true)
 	private Curso curso;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "aluno")
 	private List<TCC> tcc = new ArrayList<TCC>();
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orientador")
 	private List<TCC> orienta = new ArrayList<TCC>();
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "professor")
+	private List<Participacao> participacoes = new ArrayList<Participacao>();
 
 	public int getIdUsuario() {
 		return idUsuario;
@@ -124,11 +127,11 @@ public class Usuario implements Serializable {
 		this.curso = curso;
 	}
 
-	public List<TCC> getTCC() {
+	public List<TCC> getTcc() {
 		return tcc;
 	}
 
-	public void setTCC(List<TCC> tcc) {
+	public void setTcc(List<TCC> tcc) {
 		this.tcc = tcc;
 	}
 
@@ -138,6 +141,14 @@ public class Usuario implements Serializable {
 
 	public void setOrienta(List<TCC> orienta) {
 		this.orienta = orienta;
+	}
+
+	public List<Participacao> getParticipacoes() {
+		return participacoes;
+	}
+
+	public void setParticipacoes(List<Participacao> participacoes) {
+		this.participacoes = participacoes;
 	}
 
 }
