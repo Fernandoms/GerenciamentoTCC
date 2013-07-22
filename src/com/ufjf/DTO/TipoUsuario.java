@@ -17,28 +17,56 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * DTO da Tabela {@code TipoUsuario} contém os atributos e relacionamentos da
+ * mesma.
+ * 
+ */
 @Entity
 @Table(name = "TipoUsuario")
 public class TipoUsuario implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Campo com ID da Tipo de Usuario. Relaciona com a coluna
+	 * {@code idTipoUsuario} do banco e é gerado por autoincrement do MySQL
+	 * através das anotações {@code @GeneratedValue(generator = "increment")} e
+	 * {@code @GenericGenerator(name = "increment", strategy = "increment")}
+	 * 
+	 */
 	@Id
 	@Column(name = "idTipoUsuario", unique = true, nullable = false)
 	@GeneratedValue(generator = "increment")
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private int idTipoUsuario;
 
+	/**
+	 * Campo com nome do tipo de usuario. Relaciona com a coluna
+	 * {@code nomeTipoUsuario} do banco através da anotação
+	 * {@code @Column(name = "nomeTipoUsuario", length = 45, nullable = false)}.
+	 */
 	@Column(name = "nomeTipoUsuario", length = 45, nullable = false)
 	private String nomeTipoUsuario;
 
+	/**
+	 * Relacionamento N para N entre TipoUsuario e Permissoes. Mapeando
+	 * {@link Permissoes} na variável {@code permissoes} e retorno do tipo
+	 * {@code EAGER} que indica que será carregado automáticamente este dado
+	 * quando retornarmos o {@link TipoUsuario}.
+	 * 
+	 */
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "TipoUsuario_Permissoes", joinColumns = { @JoinColumn(name = "idTipoUsuario", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "idPermissao", nullable = false, updatable = false) })
 	private List<Permissoes> permissoes = new ArrayList<Permissoes>();
 
+	/**
+	 * Relacionamento 1 para N entre TipoUsuario e Usuario. Mapeada em
+	 * {@link Usuario} pela variável {@code tipoUsuario} e retorno do tipo
+	 * {@code LAZY} que indica que não será carregado automáticamente este dado
+	 * quando retornarmos o {@link TipoUsuario} .
+	 * 
+	 */
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoUsuario")
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 

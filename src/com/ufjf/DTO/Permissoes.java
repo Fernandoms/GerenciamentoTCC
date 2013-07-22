@@ -14,24 +14,45 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * DTO da Tabela {@code Permissoes} contém os atributos e relacionamentos da
+ * mesma.
+ * 
+ */
 @Entity
 @Table(name = "Permissoes")
 public class Permissoes implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Campo com ID das Permissoes. Relaciona com a coluna {@code idPermissao}
+	 * do banco e é gerado por autoincrement do MySQL através das anotações
+	 * {@code @GeneratedValue(generator = "increment")} e
+	 * {@code @GenericGenerator(name = "increment", strategy = "increment")}
+	 * 
+	 */
 	@Id
 	@Column(name = "idPermissao", unique = true, nullable = false)
 	@GeneratedValue(generator = "increment")
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private int idPermissao;
 
+	/**
+	 * Campo com nome da permissao. Relaciona com a coluna {@code nomePermissao}
+	 * do banco através da anotação
+	 * {@code @Column(name = "nomePermissao", length = 45, nullable = false)}.
+	 */
 	@Column(name = "nomePermissao", length = 45, nullable = false)
 	private String nomePermissao;
 
+	/**
+	 * Relacionamento N para N entre Permissoes e TipoUsuario. Mapeada em
+	 * {@link TipoUsuario} pela variável {@code permissoes} e retorno do tipo
+	 * {@code LAZY} que indica que não será carregado automáticamente este dado
+	 * quando retornarmos as {@link Permissoes} .
+	 * 
+	 */
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "permissoes")
 	private List<TipoUsuario> tipousuario = new ArrayList<TipoUsuario>();
 
